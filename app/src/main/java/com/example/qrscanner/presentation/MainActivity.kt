@@ -1,6 +1,5 @@
-package com.example.qrscanner
+package com.example.qrscanner.presentation
 
-import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Size
@@ -9,7 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.Camera
+import androidx.activity.viewModels
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST
@@ -22,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -30,13 +30,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import com.example.qrscanner.QrCodeAnalyzer
+import com.example.qrscanner.presentation.home.HomeViewModel
 import com.example.qrscanner.ui.theme.QRScannerTheme
 
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             QRScannerTheme {
+                val viewModel by viewModels<HomeViewModel>()
+                val balance by viewModel.getBalance.observeAsState()
                 var code by remember {
                     mutableStateOf("")
                 }
@@ -106,13 +112,14 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.weight(1f)
                         )
                         Text(
-                            text = "hahaha",
+                            text = balance.toString(),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(32.dp)
                         )
+
 
                     }
                 }
@@ -129,10 +136,12 @@ class MainActivity : ComponentActivity() {
 
         }
     }
+
 }
 
 @Composable
 fun SayHello(text: String) {
+
     Text(text = text)
 }
 
