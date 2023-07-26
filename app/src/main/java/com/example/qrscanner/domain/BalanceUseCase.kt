@@ -1,6 +1,6 @@
 package com.example.qrscanner.domain
 
-import com.example.qrscanner.repository.BalanceRepository
+import com.example.qrscanner.repository.balance_repository.BalanceRepository
 import javax.inject.Inject
 
 class BalanceUseCase @Inject constructor(
@@ -8,11 +8,15 @@ class BalanceUseCase @Inject constructor(
 ) {
 
     fun doTransaction(bill: Int): Boolean {
-        val totalBalance = bill - balanceRepository.getBalance()
-        if(totalBalance < 0) return false
+
+        if(balanceRepository.getBalance() < bill) return false
+        val totalBalance = balanceRepository.getBalance() - bill
         balanceRepository.setBalance(totalBalance)
+
         return true
     }
+
+
 
     fun getBalance(): Int {
         return balanceRepository.getBalance()

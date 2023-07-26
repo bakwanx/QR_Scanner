@@ -37,6 +37,8 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+
+
 @Composable
 fun QRScannerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
