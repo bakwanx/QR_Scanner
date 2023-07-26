@@ -1,4 +1,4 @@
-package com.example.qrscanner.repository
+package com.example.qrscanner.repository.balance_repository
 
 interface BalanceRepository {
 

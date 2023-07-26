@@ -27,6 +27,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.scan.ScanActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.QRScanner"/>
+        <activity
+            android:name=".presentation.pay.PayActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.QRScanner"/>
     </application>
 
 </manifest>
