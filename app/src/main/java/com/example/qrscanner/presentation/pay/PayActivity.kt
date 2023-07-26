@@ -41,7 +41,7 @@ class PayActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val getValue = intent.getStringExtra(KEY_PAY)
-        val payModel : PayModel = scanText(getValue.toString())
+        val payModel: PayModel = scanText(getValue.toString())
         setContent {
             QRScannerTheme {
                 Column(
@@ -98,7 +98,7 @@ fun DatePayment(payModel: PayModel) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = formatDate(payModel.date))
-        Text(text = "${payModel.bank} || ${formateTime(payModel.date)}" )
+        Text(text = "${payModel.bank} || ${formateTime(payModel.date)}")
 
     }
 }
@@ -148,8 +148,13 @@ fun DetailTransaction(payModel: PayModel) {
                 ),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Total")
-            Text(text = "${payModel.nominal.toString().toCurrencyFormat()}")
+            Text(
+                text = "Total",
+                fontWeight = FontWeight.Medium
+            )
+            Text(
+                text = "${payModel.nominal.toString().toCurrencyFormat()}"
+            )
         }
 
     }
@@ -164,9 +169,11 @@ fun ButtonFinish(context: Context) {
             context.startActivity(Intent(context, MainActivity::class.java))
         },
 
-        modifier = Modifier.fillMaxWidth().padding(
-            vertical = 8.dp
-        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                vertical = 8.dp
+            ),
 
 
         ) {

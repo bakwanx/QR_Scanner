@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.graphics.Color
 import com.example.qrscanner.presentation.home.Home
 import com.example.qrscanner.ui.theme.QRScannerTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,8 +18,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             QRScannerTheme {
-                val balanceViewModel by viewModels<BalanceViewModel>()
-                Home(balanceViewModel, this)
+                Surface(color = Color.White) {
+                    val transactionViewModel by viewModels<TransactionViewModel>()
+                    Home(transactionViewModel, this)
+                }
+
             }
         }
     }

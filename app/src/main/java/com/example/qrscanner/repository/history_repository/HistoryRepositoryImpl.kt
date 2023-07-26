@@ -2,8 +2,9 @@ package com.example.qrscanner.repository.history_repository
 
 import com.example.qrscanner.presentation.scan.model.PayModel
 import com.example.qrscanner.repository.database.HistoryDataSource
+import javax.inject.Inject
 
-class HistoryRepositoryImpl constructor(
+class HistoryRepositoryImpl @Inject constructor(
     private val historyDataSource: HistoryDataSource
 ) : HistoryRepository {
 

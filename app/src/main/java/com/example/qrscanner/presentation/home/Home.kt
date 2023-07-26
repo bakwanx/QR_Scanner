@@ -30,13 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.qrscanner.R
-import com.example.qrscanner.presentation.BalanceViewModel
+import com.example.qrscanner.presentation.TransactionViewModel
+import com.example.qrscanner.presentation.history.HistoryActivity
 import com.example.qrscanner.presentation.scan.ScanActivity
 import com.example.qrscanner.util.toCurrencyFormat
 
 @Composable
-fun Home(balanceViewModel: BalanceViewModel, context: Context) {
-    val balance by balanceViewModel.getBalance.observeAsState()
+fun Home(transactionViewModel: TransactionViewModel, context: Context) {
+    val balance by transactionViewModel.getBalance.observeAsState()
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -113,7 +114,7 @@ fun Action(context: Context) {
             modifier = Modifier
                 .padding(start = 8.dp)
                 .clickable {
-
+                    context.startActivity(Intent(context, HistoryActivity::class.java))
                 }
         ) {
             Box(
