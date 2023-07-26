@@ -8,8 +8,9 @@ class BalanceUseCase @Inject constructor(
 ) {
 
     fun doTransaction(bill: Int): Boolean {
+
+        if(balanceRepository.getBalance() < bill) return false
         val totalBalance = balanceRepository.getBalance() - bill
-        if(totalBalance < 0) return false
         balanceRepository.setBalance(totalBalance)
 
         return true
