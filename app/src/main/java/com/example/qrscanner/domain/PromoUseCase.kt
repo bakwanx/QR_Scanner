@@ -14,8 +14,7 @@ class PromoUseCase @Inject constructor(
             if (response.isSuccessful) {
                 return response.body()!!
             }
-
-            throw Exception("Can't get response ")
+            throw Exception("Can't get response")
         }catch (e: Exception){
             throw e
         }

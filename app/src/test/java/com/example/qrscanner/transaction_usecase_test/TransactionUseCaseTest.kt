@@ -1,4 +1,4 @@
-package com.example.qrscanner.repo_balance_impl_test
+package com.example.qrscanner.transaction_usecase_test
 
 import com.example.qrscanner.domain.TransactionUseCase
 import com.example.qrscanner.repository.balance_repository.BalanceRepository
@@ -33,6 +33,7 @@ class TransactionUseCaseTest {
 
         Assert.assertEquals(1000, balance)
     }
+
     @Test(expected = IllegalArgumentException::class)
     fun testZeroBillTransaction(){
         transactionUseCase.doTransaction(0)

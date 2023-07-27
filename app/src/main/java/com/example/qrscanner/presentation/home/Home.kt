@@ -10,25 +10,26 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,10 +39,10 @@ import com.example.qrscanner.R
 import com.example.qrscanner.presentation.TransactionViewModel
 import com.example.qrscanner.presentation.history.HistoryActivity
 import com.example.qrscanner.presentation.home.model.PromoModel
-import com.example.qrscanner.presentation.pay.model.PayModel
+import com.example.qrscanner.presentation.promo_detail.PromoDetailActivity
 import com.example.qrscanner.presentation.scan.ScanActivity
-import com.example.qrscanner.util.formatDate
 import com.example.qrscanner.util.toCurrencyFormat
+import java.io.Serializable
 
 @Composable
 fun Home(
@@ -56,20 +57,33 @@ fun Home(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .background(Color.White)
+            .fillMaxHeight()
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Header(balance.toString())
         Action(context)
-        if(historyModels != null){
-            LazyColumn(
+
+        if (historyModels != null) {
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
-            ){
-                items(historyModels!!){
-                    PromoCard(promoModel = it)
+            ) {
+                historyModels!!.forEach {
+                    PromoCard(promoModel = it, context)
                 }
             }
+
         } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Loading()
+            }
 
         }
 
@@ -182,32 +196,68 @@ fun Action(context: Context) {
 }
 
 @Composable
-fun PromoCard(promoModel: PromoModel) {
+fun PromoCard(promoModel: PromoModel, context: Context) {
 
-    Box {
+    Box(
+        modifier = Modifier
+            .padding(
+                bottom = 10.dp
+            )
+            .clickable {
+                val intent = Intent(context, PromoDetailActivity::class.java)
+                intent.putExtra(PromoDetailActivity.KEY_PROMO_DETAIL, promoModel as Serializable)
+                context.startActivity(intent)
+            }
+    ) {
         Card(
+            border = BorderStroke(0.1.dp, Color.Gray),
             colors = CardDefaults.cardColors(containerColor = Color.White),
+            modifier = Modifier.padding(
+                8.dp
+            ),
         ) {
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                AsyncImage(
-                    model = promoModel.img.url,
-                    contentDescription = "caption",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .fillMaxWidth()
-                )
+                if (promoModel.img.formats.imageSize != null) {
+                    AsyncImage(
+                        model = promoModel.img.formats.imageSize.url,
+                        contentDescription = "caption",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                bottom = 8.dp
+                            ),
+                        contentScale = ContentScale.Fit,
+                    )
+                } else {
+                    AsyncImage(
+                        model = promoModel.img.url,
+                        contentDescription = "caption",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                bottom = 8.dp
+                            ),
+                        contentScale = ContentScale.Fit,
+                    )
+                }
+
                 Text(
                     text = promoModel.nama,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(
+                        bottom = 8.dp
+                    )
                 )
                 Text(
                     text = promoModel.desc,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.padding(
+                        bottom = 8.dp
+                    ),
+                    maxLines = 2
                 )
 
             }
@@ -224,43 +274,16 @@ fun PromoCard(promoModel: PromoModel) {
 }
 
 @Composable
-fun LoadingAnimation1(
-    circleColor: Color = Color.Magenta,
-    animationDelay: Int = 1000
-) {
-
-    // circle's scale state
-    var circleScale by remember {
-        mutableStateOf(0f)
-    }
-
-    // animation
-    val circleScaleAnimate = animateFloatAsState(
-        targetValue = circleScale,
-        animationSpec = infiniteRepeatable(
-            animation = tween(
-                durationMillis = animationDelay
+fun Loading() {
+    CircularProgressIndicator(
+        modifier = Modifier.drawBehind {
+            drawCircle(
+                Color.Red,
+                radius = size.width / 2 - 5.dp.toPx() / 2,
+                style = Stroke(5.dp.toPx())
             )
-        )
+        },
+        color = Color.LightGray,
+        strokeWidth = 5.dp
     )
-
-    // This is called when the app is launched
-    LaunchedEffect(Unit) {
-        circleScale = 1f
-    }
-
-    // animating circle
-    Box(
-        modifier = Modifier
-            .size(size = 64.dp)
-            .scale(scale = circleScaleAnimate.value)
-            .border(
-                width = 4.dp,
-                color = circleColor.copy(alpha = 1 - circleScaleAnimate.value),
-                shape = CircleShape
-            )
-    ) {
-
-    }
 }
-

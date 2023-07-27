@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    Home(transactionViewModel, promoViewModel,this)
+                    Home(transactionViewModel, promoViewModel,this@MainActivity)
                 }
 
             }

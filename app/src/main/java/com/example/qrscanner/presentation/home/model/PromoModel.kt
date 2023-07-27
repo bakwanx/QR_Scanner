@@ -1,28 +1,23 @@
 package com.example.qrscanner.presentation.home.model
 
-import com.google.gson.JsonElement
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-
-@Serializable
-data class PromoModel (
+class PromoModel(
     val id: Long,
 
-    @SerialName("Title")
-    val title: JsonElement? = null,
 
-    @SerialName("published_at")
+    val title: String,
+
+
     val publishedAt: String,
 
-    @SerialName("updated_at")
+
     val updatedAt: String,
 
-    @SerialName("name_promo")
-    val namePromo: JsonElement? = null,
 
-    @SerialName("desc_promo")
-    val descPromo: JsonElement? = null,
+    val namePromo: String,
+
+
+    val descPromo: String,
 
     val nama: String,
     val desc: String,
@@ -33,10 +28,10 @@ data class PromoModel (
     val lokasi: String,
     val count: Long,
     val img: Img
-)
+) : java.io.Serializable
 
-@Serializable
-data class Img (
+
+class Img(
     val id: Long,
     val name: String,
     val alternativeText: String,
@@ -45,43 +40,42 @@ data class Img (
     val height: Long,
     val formats: Formats,
     val hash: String,
-    val ext: StringBuffer,
+    val ext: String,
     val mime: String,
     val size: Double,
     val url: String,
 
-    @SerialName("previewUrl")
-    val previewURL: JsonElement? = null,
+
+    val previewURL: String,
 
     val provider: String,
 
-    @SerialName("provider_metadata")
-    val providerMetadata: JsonElement? = null,
 
-    @SerialName("created_at")
+    val providerMetadata: String,
+
     val createdAt: String,
 
-    @SerialName("updated_at")
+
     val updatedAt: String
-)
+) : java.io.Serializable
 
-@Serializable
-data class Formats (
-    val small: Large,
-    val medium: Large,
-    val thumbnail: Large,
-    val large: Large? = null
-)
 
-@Serializable
-data class Large (
+class Formats(
+    val small: ImageSize,
+    val medium: ImageSize,
+    val thumbnail: ImageSize,
+    val imageSize: ImageSize? = null
+) : java.io.Serializable
+
+
+class ImageSize(
     val ext: String,
     val url: String,
     val hash: String,
     val mime: String,
     val name: String,
-    val path: JsonElement? = null,
+    val path: String,
     val size: Double,
     val width: Long,
     val height: Long
-)
+) : java.io.Serializable
