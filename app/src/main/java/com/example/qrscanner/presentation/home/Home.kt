@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.qrscanner.R
 import com.example.qrscanner.presentation.TransactionViewModel
+import com.example.qrscanner.presentation.activity.ActivityTracesActivity
 import com.example.qrscanner.presentation.history.HistoryActivity
 import com.example.qrscanner.presentation.home.model.PromoModel
 import com.example.qrscanner.presentation.promo_detail.PromoDetailActivity
@@ -177,7 +178,7 @@ fun Action(context: Context) {
             modifier = Modifier
                 .padding(start = 8.dp)
                 .clickable {
-
+                    context.startActivity(Intent(context, ActivityTracesActivity::class.java))
                 }
         ) {
             Box(
