@@ -102,7 +102,16 @@ dependencies {
     // Network Image
     implementation("io.coil-kt:coil-compose:2.4.0")
 
+    // GSON
     implementation 'com.google.code.gson:gson:2.9.0'
+
+    // Line Chart
+
+    implementation "com.patrykandpatrick.vico:core:1.6.5"
+    implementation "com.patrykandpatrick.vico:compose:1.6.5"
+    implementation "com.patrykandpatrick.vico:views:1.6.5"
+    implementation "com.patrykandpatrick.vico:compose-m2:1.6.5"
+    implementation "com.patrykandpatrick.vico:compose-m3:1.6.5"
 }
 
 

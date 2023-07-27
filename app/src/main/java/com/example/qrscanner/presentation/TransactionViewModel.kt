@@ -12,6 +12,7 @@ import com.example.qrscanner.domain.TransactionUseCase
 import com.example.qrscanner.presentation.pay.model.PayModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -32,10 +33,16 @@ class TransactionViewModel @Inject constructor(
                 getBalance()
             }
         }
+
     }
 
     fun getBalance() {
         _getBalance.postValue(transactionUseCase.getBalance())
+
+    }
+
+    suspend fun suspend(){
+        currentCoroutineContext()
     }
 
     fun doTransaction(bill: Int) : Boolean{

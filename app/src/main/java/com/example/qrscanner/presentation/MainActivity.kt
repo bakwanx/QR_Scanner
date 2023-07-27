@@ -26,11 +26,6 @@ class MainActivity : ComponentActivity() {
                     val transactionViewModel by viewModels<TransactionViewModel>()
                     val promoViewModel by viewModels<PromoViewModel>()
 
-                    promoViewModel.getPromoModels.observe(this){
-                        it.forEach {
-                            Log.d("Promo", "pesan: ${it.nama} ")
-                        }
-                    }
 
                     Home(transactionViewModel, promoViewModel,this@MainActivity)
                 }
