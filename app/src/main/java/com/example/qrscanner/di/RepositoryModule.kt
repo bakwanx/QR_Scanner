@@ -6,6 +6,10 @@ import com.example.qrscanner.repository.database.BalanceDataSource
 import com.example.qrscanner.repository.database.HistoryDataSource
 import com.example.qrscanner.repository.history_repository.HistoryRepository
 import com.example.qrscanner.repository.history_repository.HistoryRepositoryImpl
+import com.example.qrscanner.repository.promo_repository.PromoRepository
+import com.example.qrscanner.repository.promo_repository.PromoRepositoryImpl
+import com.example.qrscanner.rest_api.ApiClient
+import com.example.qrscanner.rest_api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +21,19 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
+
+    @Provides
+    fun providesApiService(): ApiService = ApiClient.getService()
+
+    @Provides
+    fun providesPromoRepositoryApi(
+        apiService: ApiService
+    ): PromoRepositoryImpl = PromoRepositoryImpl(apiService)
+
+    @Provides
+    fun providesPromoRepository(
+        promoRepositoryImpl: PromoRepositoryImpl
+    ): PromoRepository = promoRepositoryImpl
 
     @Provides
     @Singleton

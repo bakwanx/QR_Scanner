@@ -1,6 +1,6 @@
 package com.example.qrscanner.util
 
-import com.example.qrscanner.presentation.scan.model.PayModel
+import com.example.qrscanner.presentation.pay.model.PayModel
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar

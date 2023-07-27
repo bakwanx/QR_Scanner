@@ -1,6 +1,6 @@
 package com.example.qrscanner.repository.database
 
-import com.example.qrscanner.presentation.scan.model.PayModel
+import com.example.qrscanner.presentation.pay.model.PayModel
 
 class HistoryDataSource {
     private val db = mutableListOf<PayModel>()

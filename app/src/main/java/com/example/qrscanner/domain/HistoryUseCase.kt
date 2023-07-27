@@ -1,6 +1,6 @@
 package com.example.qrscanner.domain
 
-import com.example.qrscanner.presentation.scan.model.PayModel
+import com.example.qrscanner.presentation.pay.model.PayModel
 import com.example.qrscanner.repository.history_repository.HistoryRepository
 import javax.inject.Inject
 

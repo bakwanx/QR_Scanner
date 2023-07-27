@@ -44,7 +44,7 @@ import com.example.qrscanner.R
 import com.example.qrscanner.presentation.TransactionViewModel
 import com.example.qrscanner.presentation.MainActivity
 import com.example.qrscanner.presentation.pay.PayActivity
-import com.example.qrscanner.presentation.scan.model.PayModel
+import com.example.qrscanner.presentation.pay.model.PayModel
 import com.example.qrscanner.ui.theme.QRScannerTheme
 import com.example.qrscanner.util.scanText
 import dagger.hilt.android.AndroidEntryPoint

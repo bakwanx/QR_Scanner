@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.qrscanner.domain.HistoryUseCase
 import com.example.qrscanner.domain.TransactionUseCase
-import com.example.qrscanner.presentation.scan.model.PayModel
+import com.example.qrscanner.presentation.pay.model.PayModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

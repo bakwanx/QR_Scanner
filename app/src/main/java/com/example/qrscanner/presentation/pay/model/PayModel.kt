@@ -1,4 +1,4 @@
-package com.example.qrscanner.presentation.scan.model
+package com.example.qrscanner.presentation.pay.model
 
 import java.util.Calendar
 import java.util.Date

@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.qrscanner.presentation.TransactionViewModel
-import com.example.qrscanner.presentation.scan.model.PayModel
+import com.example.qrscanner.presentation.pay.model.PayModel
 import com.example.qrscanner.ui.theme.QRScannerTheme
 import com.example.qrscanner.util.formatDate
 import com.example.qrscanner.util.toCurrencyFormat
