@@ -33,11 +33,6 @@ import com.example.qrscanner.ui.theme.QRScannerTheme
 import com.example.qrscanner.util.getJsonDataFromAsset
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.patrykandpatrick.vico.compose.axis.horizontal.bottomAxis
-import com.patrykandpatrick.vico.compose.axis.vertical.startAxis
-import com.patrykandpatrick.vico.compose.chart.Chart
-import com.patrykandpatrick.vico.core.entry.entryModelOf
-import com.patrykandpatrick.vico.views.chart.line.lineChart
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.Serializable
 

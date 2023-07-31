@@ -22,7 +22,8 @@
             android:name=".presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner">
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,36 +34,42 @@
             android:name=".presentation.scan.ScanActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner"/>
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.pay.PayActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner"/>
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".presentation.history.HistoryActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner"/>
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".presentation.promo_detail.PromoDetailActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner"/>
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".presentation.activity.ActivityTracesActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner"/>
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".presentation.activity.DetailActivityTracesActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.QRScanner"/>
+            android:theme="@style/Theme.QRScanner"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
